@@ -29,10 +29,17 @@ def main():
     parser.add_argument("--synapse_id", required=True, help="Synapse ID to download (e.g., syn70753570)")
     parser.add_argument("--auth_token", required=True, help="Synapse personal access token for login")
     parser.add_argument("--out_dir", default="./data", help="Output directory for processed files")
+    parser.add_argument("--config1_2_path", default="./data/config1_2.json",
+                        help="path for the config file of step 1&2.")
+    parser.add_argument("--config3_path", default="./data/config3.json",
+                        help="path for the config file of step 3.")
     args = parser.parse_args()
 
     synapse_id = args.synapse_id
     out_dir = args.out_dir
+
+    config1_2_path = args.config1_2_path
+    config3_path = args.config3_path
     
     # Define output file paths
     final_path_name = os.path.join(out_dir, f"{synapse_id}.h5mu")
@@ -148,9 +155,9 @@ def main():
     step12_config["input_data"]["h5ad_file"]["file_path"] = "dummy"
     step12_config["input_data"]["sgRNA_file"]["file_path"] = "dummy"
     
-    with open("./data/config1_2.json", 'w') as f:
+    with open(config1_2_path, 'w') as f:
         json.dump(step12_config,f)
-    with open("./data/config3.json", 'w') as f:
+    with open(config3_path, 'w') as f:
         json.dump(step3_config,f)
     
 if __name__ == "__main__":
