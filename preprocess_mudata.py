@@ -151,6 +151,9 @@ def main():
     step12_config["input_data"]["annotation_file"]["file_path"] = "./data/annotation_table.csv"
     step12_config["input_data"]["annotation_file"]["concatenate_key"] = "intended_target_promoter"
     
+    step12_config["gRNA_filtering"]["perform_targeting_filtering"] = False
+    step12_config["gRNA_filtering"]["perform_nontargeting_filtering"] = False
+    
     #As this pipeline doesn't use h5ad or sgRNA dataframe fill with dummy
     step12_config["input_data"]["h5ad_file"]["file_path"] = "dummy"
     step12_config["input_data"]["sgRNA_file"]["file_path"] = "dummy"
