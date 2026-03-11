@@ -1,4 +1,12 @@
-#!usr/bin/bash
+#!/usr/bin/bash
+#SBATCH -J edist_pipeline_step1_2      # Job name
+#SBATCH -N 1                          # Total number of nodes requested (16 cores/node)
+#SBATCH -t 24:00:00                   # Run time (hh:mm:ss) - 20 hrs limit
+#SBATCH -p GPUv100s
+#SBATCH -o run_output.out
+#SBATCH -e run_output.err
+#SBATCH --gres=gpu:1
+
 TARGET_FILE_ID="syn70753570"
 SYNAPSE_TOKEN=${1}
 
