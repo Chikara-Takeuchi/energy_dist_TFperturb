@@ -29,17 +29,14 @@ def main():
     parser.add_argument("--synapse_id", required=True, help="Synapse ID to download (e.g., syn70753570)")
     parser.add_argument("--auth_token", required=True, help="Synapse personal access token for login")
     parser.add_argument("--out_dir", default="./data", help="Output directory for processed files")
-    parser.add_argument("--config1_2_path", default="./data/config1_2.json",
-                        help="path for the config file of step 1&2.")
-    parser.add_argument("--config3_path", default="./data/config3.json",
-                        help="path for the config file of step 3.")
+    
     args = parser.parse_args()
 
     synapse_id = args.synapse_id
     out_dir = args.out_dir
 
-    config1_2_path = args.config1_2_path
-    config3_path = args.config3_path
+    config1_2_path = os.path.join(out_dir,"config1_2.json")
+    config3_path = os.path.join(out_dir,"config3.json")
     
     # Define output file paths
     final_path_name = os.path.join(out_dir, f"{synapse_id}.h5mu")
@@ -148,7 +145,7 @@ def main():
     step12_config["output_file_name_list"]['gRNA_dict'] = "gRNA_dict.pickle"
     step12_config["output_file_name_list"]['OVERWRITE_PCA_DICT'] = False
     
-    step12_config["input_data"]["annotation_file"]["file_path"] = "./data/annotation_table.csv"
+    step12_config["input_data"]["annotation_file"]["file_path"] = annotation_file_path
     step12_config["input_data"]["annotation_file"]["concatenate_key"] = "intended_target_promoter"
     
     step12_config["gRNA_filtering"]["perform_targeting_filtering"] = False
