@@ -140,7 +140,7 @@ def main():
         step3_config = json.load(f)
     
     #Modify config file for this pipeline
-    step12_config["output_file_name_list"]['OUTPUT_FOLDER'] = "./data"
+    step12_config["output_file_name_list"]['OUTPUT_FOLDER'] = out_dir
     step12_config["output_file_name_list"]['pca_table'] = "pca_dataframe.pickle"
     step12_config["output_file_name_list"]['gRNA_dict'] = "gRNA_dict.pickle"
     step12_config["output_file_name_list"]['OVERWRITE_PCA_DICT'] = False
@@ -148,8 +148,8 @@ def main():
     step12_config["input_data"]["annotation_file"]["file_path"] = annotation_file_path
     step12_config["input_data"]["annotation_file"]["concatenate_key"] = "intended_target_promoter"
     
-    step12_config["gRNA_filtering"]["perform_targeting_filtering"] = False
-    step12_config["gRNA_filtering"]["perform_nontargeting_filtering"] = False
+    step12_config["gRNA_filtering"]["perform_targeting_filtering"] = True
+    step12_config["gRNA_filtering"]["perform_nontargeting_filtering"] = True
     
     #As this pipeline doesn't use h5ad or sgRNA dataframe fill with dummy
     step12_config["input_data"]["h5ad_file"]["file_path"] = "dummy"
